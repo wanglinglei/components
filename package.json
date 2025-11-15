@@ -1,0 +1,19 @@
+{
+  "name": "vue-component-library",
+  "version": "1.0.0",
+  "description": "Vue3 组件库 monorepo 项目",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @vue-lib/docs dev",
+    "build:components": "pnpm --filter @vue-lib/components build",
+    "build:docs": "pnpm --filter @vue-lib/docs build",
+    "build": "pnpm build:components && pnpm build:docs"
+  },
+  "keywords": [
+    "vue3",
+    "components",
+    "monorepo"
+  ],
+  "author": "",
+  "license": "MIT"
+}

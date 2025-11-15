@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>完整引入示例 - Full Import Example</title>
+  
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #333;
+    }
+    .demo-section {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #e1e4e8;
+      border-radius: 8px;
+    }
+    .demo-section h2 {
+      margin-top: 0;
+      color: #409eff;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>🎨 组件库完整引入示例</h1>
+    
+    <div class="demo-section">
+      <h2>基础按钮组件</h2>
+      <div class="button-group">
+        <v-button>默认按钮</v-button>
+        <v-button type="primary">主要按钮</v-button>
+        <v-button type="success">成功按钮</v-button>
+        <v-button type="warning">警告按钮</v-button>
+        <v-button type="danger">危险按钮</v-button>
+        <v-button type="info">信息按钮</v-button>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>增强按钮组件</h2>
+      <div class="button-group">
+        <v-enhanced-button>默认按钮</v-enhanced-button>
+        <v-enhanced-button type="primary">主要按钮</v-enhanced-button>
+        <v-enhanced-button type="success">成功按钮</v-enhanced-button>
+        <v-enhanced-button type="warning">警告按钮</v-enhanced-button>
+        <v-enhanced-button type="danger">危险按钮</v-enhanced-button>
+        <v-enhanced-button type="info">信息按钮</v-enhanced-button>
+      </div>
+      
+      <div class="button-group">
+        <v-enhanced-button type="primary" loading>加载中</v-enhanced-button>
+        <v-enhanced-button type="success" round>圆角按钮</v-enhanced-button>
+        <v-enhanced-button type="danger" plain>朴素按钮</v-enhanced-button>
+        <v-enhanced-button type="primary" disabled>禁用按钮</v-enhanced-button>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>不同尺寸</h2>
+      <div class="button-group">
+        <v-enhanced-button size="large" type="primary">大型按钮</v-enhanced-button>
+        <v-enhanced-button type="primary">默认按钮</v-enhanced-button>
+        <v-enhanced-button size="small" type="primary">小型按钮</v-enhanced-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入依赖 -->
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/element-plus"></script>
+  
+  <!-- 引入组件库（需要先构建后使用本地文件，或发布到 npm 后使用 CDN） -->
+  <!-- <script src="https://unpkg.com/@vue-lib/components"></script> -->
+  <script src="../dist/index.umd.js"></script>
+  <link rel="stylesheet" href="../dist/style.css">
+  
+  <script>
+    const { createApp } = Vue;
+    
+    const app = createApp({
+      data() {
+        return {
+          message: '完整引入示例'
+        }
+      }
+    });
+    
+    // 使用组件库 - 全量引入方式
+    // 这会自动注册所有组件
+    app.use(VueLib);
+    
+    app.mount('#app');
+    
+    console.log('✅ 组件库已完整引入，所有组件已自动注册');
+    console.log('📦 可用组件:', Object.keys(app._context.components));
+  </script>
+</body>
+</html>
+

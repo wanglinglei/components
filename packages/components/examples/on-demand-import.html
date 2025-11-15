@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>按需引入示例 - On-Demand Import Example</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .info-box {
+      background: #e6f7ff;
+      border: 1px solid #91d5ff;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .code-block {
+      background: #f5f7fa;
+      padding: 15px;
+      border-radius: 4px;
+      font-family: monospace;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>🎯 按需引入示例</h1>
+    
+    <div class="info-box">
+      <strong>说明：</strong> 按需引入需要使用构建工具（如 Vite、Webpack）配合 ES Modules 使用。
+      <br>
+      此示例展示了在 Vue SFC (Single File Component) 中如何按需引入组件。
+    </div>
+
+    <h2>使用方式</h2>
+    
+    <div class="code-block">
+<pre>&lt;script setup&gt;
+// 只导入需要的组件
+import { Button, EnhancedButton } from '@vue-lib/components'
+import '@vue-lib/components/style.css'
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 直接使用导入的组件 --&gt;
+    &lt;Button type="primary"&gt;基础按钮&lt;/Button&gt;
+    &lt;EnhancedButton type="success"&gt;增强按钮&lt;/EnhancedButton&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</pre>
+    </div>
+
+    <h2>优势</h2>
+    <ul>
+      <li>✅ <strong>Tree Shaking：</strong>未使用的组件不会被打包</li>
+      <li>✅ <strong>按需加载：</strong>只加载需要的组件代码</li>
+      <li>✅ <strong>减小体积：</strong>最终打包文件更小</li>
+      <li>✅ <strong>性能优化：</strong>减少初始加载时间</li>
+    </ul>
+
+    <h2>实际项目示例</h2>
+    
+    <div class="code-block">
+<pre>// src/components/MyComponent.vue
+&lt;script setup lang="ts"&gt;
+import { ref } from 'vue'
+import { EnhancedButton } from '@vue-lib/components'
+import '@vue-lib/components/style.css'
+import { Search } from '@element-plus/icons-vue'
+
+const loading = ref(false)
+
+const handleSearch = () =&gt; {
+  loading.value = true
+  // 执行搜索逻辑...
+  setTimeout(() =&gt; loading.value = false, 2000)
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;EnhancedButton 
+    type="primary"
+    :icon="Search"
+    :loading="loading"
+    @click="handleSearch"
+  &gt;
+    搜索
+  &lt;/EnhancedButton&gt;
+&lt;/template&gt;</pre>
+    </div>
+
+    <h2>TypeScript 支持</h2>
+    
+    <div class="code-block">
+<pre>// 完整的类型提示
+import type { Component } from 'vue'
+import { Button, EnhancedButton } from '@vue-lib/components'
+
+// 组件类型会自动推导
+const MyButton: typeof Button = Button
+const MyEnhancedButton: typeof EnhancedButton = EnhancedButton</pre>
+    </div>
+
+    <h2>配置建议</h2>
+    
+    <p><strong>Vite 项目：</strong> 无需额外配置，开箱即用支持 Tree Shaking</p>
+    
+    <div class="code-block">
+<pre>// vite.config.ts
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // 可选：将组件库单独打包为一个 chunk
+          'vue-lib': ['@vue-lib/components']
+        }
+      }
+    }
+  }
+})</pre>
+    </div>
+  </div>
+</body>
+</html>
+
