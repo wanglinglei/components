@@ -3,6 +3,7 @@ import type { App, Plugin } from 'vue'
 // 导入组件（从组件目录的 index.ts）
 import Button from './components/Button'
 import EnhancedButton from './components/EnhancedButton'
+import TooltipButton from './components/TooltipButton'
 
 // 统一导出组件类型定义
 export type {
@@ -22,7 +23,7 @@ export type {
 } from './components/EnhancedButton'
 
 // 组件列表
-const components = [Button, EnhancedButton]
+const components = [Button, EnhancedButton, TooltipButton]
 
 // 定义 install 方法，供全量引入时调用
 const install = (app: App) => {
@@ -32,17 +33,19 @@ const install = (app: App) => {
 }
 
 // 按需导出每个组件
-export { Button, EnhancedButton }
+export { Button, EnhancedButton, TooltipButton }
 
 // 默认导出，支持全量引入
 // 支持 app.use(VueLib) 和 app.use(VueLib.install)
 const VueLib: Plugin & {
   Button: typeof Button
   EnhancedButton: typeof EnhancedButton
+  TooltipButton: typeof TooltipButton
 } = {
   install,
   Button,
-  EnhancedButton
+  EnhancedButton,
+  TooltipButton
 }
 
 export default VueLib
