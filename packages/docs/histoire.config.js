@@ -9,6 +9,8 @@ const __dirname = dirname(__filename);
 import ElementPlus from "element-plus";
 
 export default defineConfig({
+  setupFile: "./histoire.setup.ts",
+
   plugins: [
     HstVue({
       setupApp: (app) => {

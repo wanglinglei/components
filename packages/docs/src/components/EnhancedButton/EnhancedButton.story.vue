@@ -24,7 +24,6 @@
 <script setup lang="ts">
 import { EnhancedButton } from "@vue-lib/components";
 import { Search } from "@element-plus/icons-vue";
-import "element-plus/dist/index.css";
 </script>
 
 <style></style>

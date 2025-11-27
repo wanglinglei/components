@@ -68,8 +68,6 @@
 <script setup lang="ts">
 import { Button } from "@vue-lib/components";
 import { logEvent } from "histoire/client";
-import "element-plus/dist/index.css";
-import { reactive } from "vue";
 
 const initialState = {
   type: "default",
